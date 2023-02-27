@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item android:title="@string/my_ads"
+            android:id="@+id/id_my_ads"
+            android:icon="@drawable/ic_my_ads"/>
+        <item android:title="@string/cars_ads"
+            android:id="@+id/id_cars"
+            android:icon="@drawable/ic_my_cars"
+            />
+        <item android:title="@string/smartphone_ads"
+            android:id="@+id/smartphone_ads"
+            />
+        <item android:title="@string/dm_ads"
+            android:id="@+id/dm_ads"
+            />
+    </group>
+    <item android:title="@string/accaunt">
+        <menu>
+            <item android:title="@string/sign_up"
+                android:id="@+id/sign_up"
+                />
+            <item android:title="@string/sign_in"
+                android:id="@+id/sign_in"
+                />
+            <item android:title="@string/sign_out"
+                android:id="@+id/sign_out"
+                />
+        </menu>
+    </item>
+
+</menu>

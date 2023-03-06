@@ -8,4 +8,6 @@
     <string name="sign_in">Вход</string>
     <string name="sign_out">Выход</string>
     <string name="accaunt">Аккаунт</string>
+    <string name="sign_in_buton">Войти</string>
+    <string name="sign_up_buton">Зарегистрироватся</string>
 </resources>

@@ -12,9 +12,11 @@
             />
         <item android:title="@string/smartphone_ads"
             android:id="@+id/smartphone_ads"
+            android:icon="@drawable/ic_my_smart"
             />
         <item android:title="@string/dm_ads"
             android:id="@+id/dm_ads"
+            android:icon="@drawable/ic_my_dm"
             />
     </group>
     <item android:title="@string/accaunt">

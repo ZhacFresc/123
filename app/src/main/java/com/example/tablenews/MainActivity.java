@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView nav_view;
     private FirebaseAuth mAuth;
+    private TextView userMail;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart(){
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        getUserData();
     }
+    private void getUserData(){
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            userMail.setText(currentUser.getEmail());
+        }
+        else {
+            userMail.setText(R.string.sign_in_or_sign_up);
+        }
+    }
+
     private void init(){
         nav_view = findViewById(R.id.nav_view);
         nav_view.setNavigationItemSelectedListener(this);
         mAuth = FirebaseAuth.getInstance();
+        userMail = nav_view.getHeaderView(0).findViewById(R.id.tvEmail);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -104,9 +116,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 else if (index == 1){
                     signIn(addEmail.getText().toString(), addPassword.getText().toString());
                 }
+                dialog.dismiss();
             }
         });
-        AlertDialog dialog = dialogBuilder.create();
+        dialog = dialogBuilder.create();
         dialog.show();
     }
 
@@ -117,11 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if(user != null){
-                                Toast.makeText(MainActivity.this, "SigpUp done... suer Email", Toast.LENGTH_SHORT).show();
-                                Log.d("Log_my_MainActivity", "signInWithCustomToken:success" + user.getEmail());
-                            }
+                            getUserData();
                         }
                         else {
 
@@ -137,25 +146,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void signIn(String email, String password){
-        if (!email.equals("") && !password.equals(""))
-        mAuth.signInWithEmailAndPassword(email, password)
-        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Log.d("SignIn MainActivity", "GOOD YOU IN");
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    Toast.makeText(MainActivity.this, "Sign in done", Toast.LENGTH_SHORT).show();
-
-                }
-                else {
-                    Toast.makeText(MainActivity.this, "Erore Sign in", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+    private void signIn(String email, String password) {
+        if (!email.equals("") && !password.equals("")) {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                getUserData();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Erore Sign in", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
     }
     private void signOut(){
         mAuth.signOut();
+        getUserData();
     }
 }

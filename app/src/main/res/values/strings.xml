@@ -10,4 +10,10 @@
     <string name="accaunt">Аккаунт</string>
     <string name="sign_in_buton">Войти</string>
     <string name="sign_up_buton">Зарегистрироватся</string>
+    <string name="sign_in_or_sign_up">Войдите или зарегестрируйтесь</string>
+    <!-- EditActivity -->
+    <string name="edit_ac_title">Название</string>
+    <string name="edit_ac_price">Цена</string>
+    <string name="edit_ac_discription">Описание</string>
+    <string name="edit_ac_phone">Телефон</string>
 </resources>

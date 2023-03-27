@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "498309850301",
+    "project_id": "tabinfo-9148d",
+    "storage_bucket": "tabinfo-9148d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498309850301:android:3506bc29ad165205fac3d4",
+        "android_client_info": {
+          "package_name": "com.example.tablenews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498309850301-44bat689aunr43hvfqe8vqoaj6nchrn4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkarXletW1FwUj2w9FsFNEKMNny8z8kis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498309850301-44bat689aunr43hvfqe8vqoaj6nchrn4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

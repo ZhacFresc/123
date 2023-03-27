@@ -10,6 +10,10 @@
             android:id="@+id/id_cars"
             android:icon="@drawable/ic_my_cars"
             />
+        <item android:title="@string/computer_ads"
+            android:id="@+id/computer_ads"
+            android:icon="@drawable/ic_my_comp"
+            />
         <item android:title="@string/smartphone_ads"
             android:id="@+id/smartphone_ads"
             android:icon="@drawable/ic_my_smart"

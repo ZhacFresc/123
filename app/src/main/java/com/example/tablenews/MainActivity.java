@@ -75,21 +75,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Pressed id_cars", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.smartphone_ads:
-                Toast.makeText(this, "Pressed id_cars", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Pressed smartphone_ads", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.computer_ads:
+                Toast.makeText(this, "Pressed computer_ads", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.dm_ads:
-                Toast.makeText(this, "Pressed id_cars", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Pressed dm_ads", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_in:
                 signUpAndInDialog(R.string.sign_in,R.string.sign_in_buton, 1);
-                Toast.makeText(this, "Pressed id_cars", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Pressed sign_in", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_up:
                 signUpAndInDialog(R.string.sign_up,R.string.sign_up_buton, 0);
-                Toast.makeText(this, "Pressed id_cars", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Pressed sign_up", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_out:
-                Toast.makeText(this, "Pressed id_cars", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Pressed sign_out", Toast.LENGTH_SHORT).show();
                 signOut();
                 break;
         }

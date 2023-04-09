@@ -19,7 +19,7 @@
             android:icon="@drawable/ic_my_smart"
             />
         <item android:title="@string/dm_ads"
-            android:id="@+id/dm_ads"
+            android:id="@+id/id_dm_ads"
             android:icon="@drawable/ic_my_dm"
             />
     </group>

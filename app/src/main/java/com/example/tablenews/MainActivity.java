@@ -1,10 +1,12 @@
 package com.example.tablenews;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,7 +33,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView rcView;
     private PostAdapter postAdapter;
     private DataSender dataSender;
+    private DbManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +76,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fb = findViewById(R.id.fb);
         rcView = findViewById(R.id.recyclerView);
         rcView.setLayoutManager(new LinearLayoutManager(this));
+        List<NewPost> arrayTestPost = new ArrayList<>();
+        postAdapter = new PostAdapter(arrayTestPost, this, onItemClickCustom);
+        rcView.setAdapter(postAdapter);
 
         getDataDB();
-        DbManager dbManager = new DbManager(dataSender);
+        dbManager = new DbManager(dataSender);
         dbManager.getDataFromDb("Машины");
     }
 
@@ -116,28 +128,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch (id) {
             case R.id.id_my_ads:
-                Toast.makeText(this, "Pressed id My Ads", Toast.LENGTH_SHORT).show();
+                dbManager.getMyAdsDataFromDb(mAuth.getUid());
                 break;
             case R.id.id_cars_ads:
-                Toast.makeText(this, "Pressed id cars", Toast.LENGTH_SHORT).show();
+                dbManager.getDataFromDb("Машины");
                 break;
             case R.id.id_pc_ads:
-                Toast.makeText(this, "Pressed id pc", Toast.LENGTH_SHORT).show();
+                dbManager.getDataFromDb("Компьютеры");
                 break;
             case R.id.id_smartphone_ads:
-                Toast.makeText(this, "Pressed id smartphone", Toast.LENGTH_SHORT).show();
+                dbManager.getDataFromDb("Смартфоны");
+                break;
+            case R.id.id_dm_ads:
+                dbManager.getDataFromDb("Бытовая техника");
                 break;
             case R.id.id_sign_up:
                 signUpDialog(R.string.sign_up, R.string.sign_up_button, 0);
-                Toast.makeText(this, "Pressed id sing up", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.id_sign_in:
                 signUpDialog(R.string.sign_in, R.string.sign_in_button, 1);
-                Toast.makeText(this, "Pressed id sign in", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.id_sign_out:
                 SignOut();
-                Toast.makeText(this, "Pressed id sign out", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
